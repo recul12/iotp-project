@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/userInfo"
+        android:icon="@drawable/icon"
+        android:title="userInfo"
+        app:showAsAction="always" />
+    <group>
+        <item
+            android:id="@+id/menu_account"
+            android:title="account"
+            android:icon="@drawable/icon"
+            />
+        <item
+            android:id="@+id/menu_shutdown"
+            android:icon="@drawable/icon"
+            android:title="로그아웃" />
+    </group>
+</menu>

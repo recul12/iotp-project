@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/RFIDText"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:fontFamily="@font/hanna"
+        android:gravity="center"
+        android:text="회원정보"
+        android:textColor="#000000"
+        android:textColorLink="#000000"
+        android:textSize="36sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="5dp"
+        android:orientation="vertical"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:id="@+id/nameText"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:fontFamily="@font/hanna"
+            android:gravity="center"
+            android:text="TextView"
+            android:textSize="30sp" />
+
+        <EditText
+            android:id="@+id/PhoneEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="@font/hanna"
+            android:hint="핸드폰 번호: 010-xxxx-xxxx"
+            android:inputType="phone"
+            android:textSize="24sp" />
+
+        <Spinner
+            android:id="@+id/boxSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:id="@+id/dateSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/checkButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/hanna"
+            android:text="확인"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+</LinearLayout>
