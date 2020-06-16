@@ -19,7 +19,8 @@ public class Broadcast extends BroadcastReceiver {
         //NotificationManager 안드로이드 상태바에 메세지를 던지기위한 서비스 불러오고
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Intent notificationIntent = new Intent(context, AlarmActivity.class);
-
+        String goodsName=intent.getStringExtra("goodsName");
+        String txt=intent.getStringExtra("memo");
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
                 | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
@@ -30,8 +31,8 @@ public class Broadcast extends BroadcastReceiver {
         builder.setSmallIcon(R.drawable.ic_launcher_foreground); //mipmap 사용시 Oreo 이상에서 시스템 UI 에러남
 
 
-        String channelName ="매일 알람 채널";
-        String description = "매일 정해진 시간에 알람합니다.";
+        String channelName ="알람 채널";
+        String description = "정해진 시간에 알람합니다.";
         int importance = NotificationManager.IMPORTANCE_HIGH; //소리와 알림메시지를 같이 보여줌
 
         NotificationChannel channel = new NotificationChannel("default", channelName, importance);
@@ -49,8 +50,8 @@ public class Broadcast extends BroadcastReceiver {
                 .setWhen(System.currentTimeMillis())
 
                 .setTicker("{Time to watch some cool stuff!}")
-                .setContentTitle("상태바 드래그시 보이는 타이틀")
-                .setContentText("상태바 드래그시 보이는 서브타이틀")
+                .setContentTitle(goodsName)
+                .setContentText(txt)
                 .setContentInfo("INFO")
                 .setContentIntent(pendingIntent);
 

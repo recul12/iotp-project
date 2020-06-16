@@ -1,17 +1,21 @@
 package com.example.iotp;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+
+import com.example.iotp.Adapter.AlarmAdapter;
+import com.example.iotp.Info.MemoInfo;
+import com.example.iotp.Info.memberinfo;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,9 +24,12 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class ListActivity extends AppCompatActivity {
     private static final String TAG = "ListActivity";
@@ -49,16 +56,32 @@ public class ListActivity extends AppCompatActivity {
         arrayKeyList=new ArrayList<>();
         arrayList.clear();
 
+        Intent intent = getIntent();
+        final memberinfo memberRef = (memberinfo)intent.getSerializableExtra("memberRef");
+
 
         FirebaseDatabase.getInstance().getReference("memos/"+user.getUid()).
                 addChildEventListener(new ChildEventListener()
         {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
                     arrayKeyList.add(dataSnapshot.getKey());
                     Log.d(TAG, dataSnapshot.getKey());
+
                     MemoInfo memoInfo = dataSnapshot.getValue(MemoInfo.class);
+
+                    String cd=memoInfo.getCreateDate();
+
+                    long tmp;
+                    try {
+                        tmp=timecheck(cd);
+                        if(tmp<0){
+                            FirebaseDatabase.getInstance().getReference("memos/"+user.getUid()).child(dataSnapshot.getKey()).setValue(null);
+                        }
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
                     arrayList.add(memoInfo);
 
                 adapter.notifyDataSetChanged(); //리스트 저장 및 새로고침
@@ -85,16 +108,19 @@ public class ListActivity extends AppCompatActivity {
                     }
                 });
 
+
+
         adapter = new AlarmAdapter(arrayList, this);
         recyclerView.setAdapter(adapter);
-
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
         recyclerView.addOnItemTouchListener(new selectdocumentActivity.RecyclerTouchListener(getApplicationContext(), recyclerView, new selectdocumentActivity.ClickListener(){
             @Override
             public void onClick(View view, int position) {
                 Log.d(TAG, "SUCCESS");
                 MemoInfo memo = arrayList.get(position);
                 String key= arrayKeyList.get(position);
-                startDActivity(AlarmActivity.class, memo, key);
+                startDActivity(AlarmActivity.class, memberRef ,memo, key);
                 finish();
             }
         }));
@@ -102,13 +128,51 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(getApplicationContext() ,AlarmActivity.class);
+                intent.putExtra("memberRef", memberRef);
                 startActivity(intent);
             }
         });;
     }
-    private void startDActivity(Class c, MemoInfo a, String key){
+
+    ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            final int position = viewHolder.getAdapterPosition();
+            arrayList.remove(position);
+            adapter.notifyItemRemoved(position);
+            String deletefile=arrayKeyList.get(position);
+            FirebaseDatabase.getInstance().getReference("memos/"+user.getUid()).child(deletefile).setValue(null);
+        }
+    };
+
+    public long timecheck(String data) throws ParseException {
+
+        SimpleDateFormat transFormat = new SimpleDateFormat("yyyyMMddHHmm");
+        Date date=new Date();
+        Date to = transFormat.parse(data);
+
+        Calendar calendar = Calendar.getInstance();
+        Calendar calendar1 = Calendar.getInstance();
+        calendar.setTime(to);
+        calendar1.setTime(date);
+        long gti=calendar.getTimeInMillis();
+        Log.e(TAG, String.valueOf(gti));
+
+        long gti1=calendar1.getTimeInMillis();
+
+        Log.e(TAG, String.valueOf(gti1));
+        return gti-gti1;
+    }
+
+    private void startDActivity(Class c, memberinfo memberinfo,MemoInfo a, String key){
         Intent intent=new Intent(this,c);
         intent.putExtra("memoRef", a);
+        intent.putExtra("memberRef", memberinfo);
         intent.putExtra("keyString",key);
         startActivity(intent);
     }

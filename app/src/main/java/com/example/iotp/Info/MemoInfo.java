@@ -1,27 +1,19 @@
-package com.example.iotp;
+package com.example.iotp.Info;
 
 import java.io.Serializable;
 
 public class MemoInfo implements Serializable {
-    private String name,key;
+    private String goodsName;
     private String txt;
     private String createDate, updateDate;
 
-    public String getKey() {
-        return key;
+
+    public String getGoodsName() {
+        return goodsName;
     }
 
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setGoodsName(String name) {
+        this.goodsName = name;
     }
 
     public String getTxt() {

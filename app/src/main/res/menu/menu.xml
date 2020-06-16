@@ -10,12 +10,11 @@
     <group>
         <item
             android:id="@+id/menu_account"
-            android:title="account"
             android:icon="@drawable/icon"
-            />
+            android:title="사물함 기한 연장" />
         <item
             android:id="@+id/menu_shutdown"
             android:icon="@drawable/icon"
-            android:title="로그아웃" />
+            android:title="앱 종료" />
     </group>
 </menu>
