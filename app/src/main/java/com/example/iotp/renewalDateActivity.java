@@ -85,7 +85,7 @@ public class renewalDateActivity extends AppCompatActivity {
                 case R.id.renewalButton:
                     renewal();
                     startToast("사물함 대여기한이 연장되었습니다.");
-                    startDActivity(MainActivity.class, member);
+                    startDActivity(ResultActivity.class, member);
                     finish();
                     break;
             }
