@@ -1,5 +1,7 @@
 package com.example.iotp;
 
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -76,6 +78,7 @@ public class ListActivity extends AppCompatActivity {
                     try {
                         tmp=timecheck(cd);
                         if(tmp<0){
+
                             FirebaseDatabase.getInstance().getReference("memos/"+user.getUid()).child(dataSnapshot.getKey()).setValue(null);
                         }
                     } catch (ParseException e) {
@@ -143,6 +146,7 @@ public class ListActivity extends AppCompatActivity {
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             final int position = viewHolder.getAdapterPosition();
+
             arrayList.remove(position);
             adapter.notifyItemRemoved(position);
             String deletefile=arrayKeyList.get(position);

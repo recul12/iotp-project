@@ -14,6 +14,7 @@
         <activity android:name=".MemberInitActivity" />
         <activity android:name=".MemberActivity" />
         <activity android:name=".logLookupActivity" />
+        <activity android:name=".logDetailActivity"/>
         <activity android:name=".MenuActivity" />
         <activity android:name=".ResultActivity" />
         <activity android:name=".selectdocumentActivity" />

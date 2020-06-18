@@ -10,7 +10,7 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="117dp"
-        android:fontFamily="@font/hanna"
+        android:fontFamily="@font/nanum"
         android:gravity="center"
         android:text="사물함 기한 연장"
         android:textColor="#000000"
@@ -33,16 +33,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/hanna"
+                android:fontFamily="@font/nanum"
                 android:text="현재 사용기한"
                 android:textColor="#000000"
                 android:textSize="24sp" />
+
+            <View
+                android:id="@+id/divider12"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:background="?android:attr/listDivider" />
 
             <TextView
                 android:id="@+id/currentDateText"
                 android:layout_width="260dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/hanna"
+                android:fontFamily="@font/nanum"
                 android:scrollbarSize="10dp"
                 android:text="TextView"
                 android:textColor="#000000"
@@ -59,10 +66,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/hanna"
+                android:fontFamily="@font/nanum"
                 android:text="연장기한"
                 android:textColor="#000000"
                 android:textSize="24sp" />
+
+            <View
+                android:id="@+id/divider13"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="?android:attr/listDivider" />
 
             <TextView
                 android:id="@+id/renewDateText"
@@ -74,6 +87,12 @@
 
         </LinearLayout>
 
+        <View
+            android:id="@+id/divider14"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
         <Spinner
             android:id="@+id/lockerSpinner"
             android:layout_width="match_parent"
@@ -83,7 +102,8 @@
             android:id="@+id/renewalButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/hanna"
+            android:background="#9DD5CC"
+            android:fontFamily="@font/nanum"
             android:text="기한 연장"
             android:textSize="18sp" />
 

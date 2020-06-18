@@ -56,7 +56,6 @@ class MainActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedList
                 if (task.isSuccessful) {
                     Toast.makeText(this@MainActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
                     val intent = Intent(applicationContext, ResultActivity::class.java)
-                    intent.putExtra("nickName", account.displayName)
                     startActivity(intent)
                 } else {
                     Toast.makeText(this@MainActivity, "로그인 실패", Toast.LENGTH_SHORT).show()

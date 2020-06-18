@@ -9,7 +9,7 @@
         android:id="@+id/RFIDText"
         android:layout_width="match_parent"
         android:layout_height="118dp"
-        android:fontFamily="@font/hanna"
+        android:fontFamily="@font/nanum"
         android:gravity="center"
         android:text="물건 정보변경"
         android:textColor="#000000"
@@ -29,39 +29,73 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
             app:srcCompat="@drawable/ic_launcher_foreground" />
 
         <TextView
             android:id="@+id/timeText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/hanna"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/nanum"
+            android:padding="5dp"
             android:text="TextView"
-            android:textSize="36sp" />
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <View
+            android:id="@+id/divider21"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
 
         <TextView
             android:id="@+id/goodsNameText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/hanna"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/nanum"
+            android:padding="5dp"
             android:text="TextView"
-            android:textSize="36sp" />
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <View
+            android:id="@+id/divider22"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
 
         <TextView
             android:id="@+id/detailText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/hanna"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/nanum"
+            android:padding="5dp"
             android:text="TextView"
-            android:textSize="36sp" />
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <View
+            android:id="@+id/divider23"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
 
         <TextView
             android:id="@+id/inOutText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/hanna"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/nanum"
+            android:gravity="center"
+            android:padding="5dp"
             android:text="TextView"
-            android:textSize="36sp" />
+            android:textColor="#000000"
+            android:textSize="18sp" />
     </LinearLayout>
 
 </LinearLayout>

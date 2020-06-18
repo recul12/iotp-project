@@ -16,4 +16,9 @@
         android:fontStyle = "normal"
         android:fontWeight = "400"
         android:font = "@font/cregular"/>
+
+    <font
+        android:fontStyle = "normal"
+        android:fontWeight = "400"
+        android:font = "@font/nanum"/>
 </font-family>

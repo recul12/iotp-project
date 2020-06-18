@@ -56,8 +56,12 @@ public class AlarmActivity extends AppCompatActivity {
     private String date="";
     private String time="";
     private String key;
-    private TextView textView_Date;
+    private TextView textView_month;
+    private TextView textView_year;
+    private TextView textView_day;
+    private TextView textView_minute;
     private TextView textView_time;
+    private TextView select_memo;
     private DatePickerDialog.OnDateSetListener callbackMethod;
     private TimePickerDialog.OnTimeSetListener timecallback;
     private MemoInfo memoRef;
@@ -72,7 +76,7 @@ public class AlarmActivity extends AppCompatActivity {
         setContentView(R.layout.activity_alarm);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
-
+        mFirebaseUser=mFirebaseAuth.getCurrentUser();
         memo = (EditText) findViewById(R.id.memo);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         FloatingActionButton fabSaveMemo = (FloatingActionButton) findViewById(R.id.fab);
@@ -118,7 +122,8 @@ public class AlarmActivity extends AppCompatActivity {
         goodsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+                String item=goodsName.get(i);
+                select_memo.setText(item);
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -153,8 +158,12 @@ public class AlarmActivity extends AppCompatActivity {
 
     public void InitializeView()
     {
-        textView_Date = (TextView)findViewById(R.id.textView_date);
+        textView_month = (TextView)findViewById(R.id.textView_month);
+        textView_year = (TextView)findViewById(R.id.textView_year);
+        textView_day = (TextView)findViewById(R.id.textView_day);
         textView_time = (TextView)findViewById(R.id.textView_time);
+        textView_minute = (TextView)findViewById(R.id.textView_minute);
+        select_memo = (TextView)findViewById(R.id.select_memo);
     }
 
     public void InitializeListener()
@@ -166,7 +175,9 @@ public class AlarmActivity extends AppCompatActivity {
             {
                 String moy="", dom="";
                 int moy1=monthOfYear+1;
-                textView_Date.setText(year + "년" + moy1 + "월" + dayOfMonth + "일");
+                textView_year.setText(year + "  년");
+                textView_month.setText(moy1 + "  월");
+                textView_day.setText( dayOfMonth + "  일");
                 if(monthOfYear<10)
                     moy="0"+String.valueOf(moy1);
                 else
@@ -186,8 +197,8 @@ public class AlarmActivity extends AppCompatActivity {
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
                 String hod="", min="";
-                textView_time.setText(hourOfDay+"시"+minute+"분");
-
+                textView_time.setText(hourOfDay+"  시");
+                textView_minute.setText(minute+"  분");
 
                 if(hourOfDay<10)
                     hod="0"+String.valueOf(hourOfDay);
@@ -333,6 +344,7 @@ public class AlarmActivity extends AppCompatActivity {
 
 
         Log.d(TAG,memoRef.getCreateDate());
+
         int year=Integer.parseInt(memoRef.getCreateDate().substring(0,4));
         int month=Integer.parseInt(memoRef.getCreateDate().substring(4,6));
         int day=Integer.parseInt(memoRef.getCreateDate().substring(6,8));
@@ -350,15 +362,8 @@ public class AlarmActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Broadcast.class);
         intent.putExtra("goodsName", memoRef.getGoodsName());
         intent.putExtra("memo", memoRef.getTxt());
-        PendingIntent sender = PendingIntent.getBroadcast(this, 0, intent, 0);
+        PendingIntent sender = PendingIntent.getBroadcast(getApplicationContext(),(int)(System.currentTimeMillis()/1000), intent, 0);
 
-
-        Log.d(TAG,String.valueOf(year));
-        Log.d(TAG,String.valueOf(month));
-        Log.d(TAG,String.valueOf(day));
-        Log.d(TAG,String.valueOf(hour));
-        Log.d(TAG,String.valueOf(minute));
-        Log.d(TAG, String.valueOf(calendar.getTimeInMillis()));
             //알람 예약
         am.set(AlarmManager.RTC,calendar.getTimeInMillis(),sender);
     }

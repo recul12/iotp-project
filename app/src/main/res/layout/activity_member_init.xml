@@ -8,7 +8,7 @@
         android:id="@+id/RFIDText"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:fontFamily="@font/hanna"
+        android:fontFamily="@font/nanum"
         android:gravity="center"
         android:text="회원정보"
         android:textColor="#000000"
@@ -27,7 +27,7 @@
             android:id="@+id/nameText"
             android:layout_width="match_parent"
             android:layout_height="42dp"
-            android:fontFamily="@font/hanna"
+            android:fontFamily="@font/nanum"
             android:gravity="center"
             android:text="TextView"
             android:textSize="30sp" />
@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:fontFamily="@font/hanna"
+            android:fontFamily="@font/nanum"
             android:hint="핸드폰 번호: 010-xxxx-xxxx"
             android:inputType="phone"
             android:textSize="24sp" />
@@ -56,7 +56,8 @@
             android:id="@+id/checkButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/hanna"
+            android:background="#9DD5CC"
+            android:fontFamily="@font/nanum"
             android:text="확인"
             android:textSize="24sp" />
 

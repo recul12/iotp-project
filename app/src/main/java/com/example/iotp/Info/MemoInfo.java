@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class MemoInfo implements Serializable {
     private String goodsName;
     private String txt;
-    private String createDate, updateDate;
+    private String createDate;
 
 
     public String getGoodsName() {
@@ -32,12 +32,6 @@ public class MemoInfo implements Serializable {
         this.createDate = createDate;
     }
 
-    public String getUpdateDate() {
-        return updateDate;
-    }
 
-    public void setUpdateDate(String updateDate) {
-        this.updateDate = updateDate;
-    }
 
 }

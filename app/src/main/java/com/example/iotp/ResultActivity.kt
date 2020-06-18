@@ -39,9 +39,6 @@ class ResultActivity : AppCompatActivity() {
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.baseline_menu_black_18dp)  // 왼쪽 버튼 이미지 설정
         supportActionBar!!.setDisplayShowTitleEnabled(false)
 
-        val nickName = intent.getStringExtra("nickName")
-
-        tv_result.setText(nickName+"님 환영합니다!")
 
         getProviderData()
 

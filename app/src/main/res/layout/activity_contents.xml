@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:fontFamily="@font/cregular"
+                android:fontFamily="@font/nanum"
                 android:text="이름"
                 android:textColor="#000000" />
 
@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:fontFamily="@font/cregular"
+                android:fontFamily="@font/nanum"
                 android:text="상세정보"
                 android:textColor="#000000" />
 
