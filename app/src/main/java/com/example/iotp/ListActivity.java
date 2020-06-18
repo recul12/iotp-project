@@ -1,7 +1,6 @@
 package com.example.iotp;
 
-import android.app.NotificationManager;
-import android.content.Context;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +9,6 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -115,8 +113,6 @@ public class ListActivity extends AppCompatActivity {
 
         adapter = new AlarmAdapter(arrayList, this);
         recyclerView.setAdapter(adapter);
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
-        itemTouchHelper.attachToRecyclerView(recyclerView);
         recyclerView.addOnItemTouchListener(new selectdocumentActivity.RecyclerTouchListener(getApplicationContext(), recyclerView, new selectdocumentActivity.ClickListener(){
             @Override
             public void onClick(View view, int position) {
@@ -137,22 +133,6 @@ public class ListActivity extends AppCompatActivity {
         });;
     }
 
-    ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-        @Override
-        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-            return false;
-        }
-
-        @Override
-        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            final int position = viewHolder.getAdapterPosition();
-
-            arrayList.remove(position);
-            adapter.notifyItemRemoved(position);
-            String deletefile=arrayKeyList.get(position);
-            FirebaseDatabase.getInstance().getReference("memos/"+user.getUid()).child(deletefile).setValue(null);
-        }
-    };
 
     public long timecheck(String data) throws ParseException {
 
